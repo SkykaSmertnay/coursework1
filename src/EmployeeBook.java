@@ -14,19 +14,19 @@ public class EmployeeBook {
             employeesList[i] = new Employee(fullName, RANDOM.nextInt(1,6), RANDOM.nextInt(50_000,100_000));
         }
     }
-    public static void printEmpl() {
+    public  void printEmpl() {
         for (Employee employee : employeesList) {
             System.out.println(employee);
         }
     }
-    public static int allSalary() {
+    public  int allSalary() {
         int total = 0;
         for (Employee employee : employeesList) {
             total = total + employee.getSalary();
         }
         return total;
     }
-    public static void minSalaryEmployee() {
+    public  void minSalaryEmployee() {
         Employee minSalaryEmploee = new Employee("Такой-то Такой-то", 1,1_000_000 );
 
         for (Employee employee : employeesList) {
@@ -37,7 +37,7 @@ public class EmployeeBook {
         }
         System.out.println("Сотрудник с минимальной ЗП - " + minSalaryEmploee);
     }
-    public static void maxSalaryEmployee() {
+    public  void maxSalaryEmployee() {
         Employee maxnSalaryEmploee = new Employee("Такой-то Такой-то", 1,0 );
 
         for (Employee employee : employeesList) {
@@ -49,20 +49,19 @@ public class EmployeeBook {
         System.out.println("Сотрудник с максимальной ЗП - " + maxnSalaryEmploee);
     }
 
-    public static float averageSalary() {
+    public  float averageSalary() {
         float averageSalary;
         averageSalary = (float)(allSalary() / employeesList.length);
         return averageSalary;
     }
 
-    public static void printAllFullNames() {
+    public  void printAllFullNames() {
         for (Employee employee : employeesList) {
             System.out.println(employee.getFullName());
         }
     }
 
-    public static void salaryIndexation(float increasePercent) {
-
+    public  void salaryIndexation(float increasePercent) {
         int newSalary;
         increasePercent = (increasePercent / 100 + 1);
         for (Employee employee : employeesList) {
@@ -72,7 +71,7 @@ public class EmployeeBook {
 
     }
 
-    public static void minSalaryEmployeeDepartment(int departmentNumber) {
+    public  void minSalaryEmployeeDepartment(int departmentNumber) {
         Employee minSalaryEmploee = new Employee("Такой-то Такой-то", departmentNumber,1_000_000 );
 
         for (Employee employee : employeesList) {
@@ -83,7 +82,7 @@ public class EmployeeBook {
         }
         System.out.println("Сотрудник с минимальной ЗП в отделе №" + departmentNumber + " - " + minSalaryEmploee);
     }
-    public static void maxSalaryEmployeeDepartment(int departmentNumber) {
+    public  void maxSalaryEmployeeDepartment(int departmentNumber) {
         Employee maxSalaryEmploee = new Employee("Такой-то Такой-то", departmentNumber,0 );
 
         for (Employee employee : employeesList) {
@@ -94,7 +93,7 @@ public class EmployeeBook {
         }
         System.out.println("Сотрудник с минимальной ЗП в отделе №" + departmentNumber + " - " + maxSalaryEmploee);
     }
-    public static int allSalaryDepartment(int departmentNumber) {
+    public  int allSalaryDepartment(int departmentNumber) {
         int total = 0;
         for (Employee employee : employeesList) {
             if (employee.getDepartment() == departmentNumber) {
@@ -104,7 +103,7 @@ public class EmployeeBook {
         return total;
     }
 
-    public static float averageSalaryDepartment(int departmentNumber) {
+    public  float averageSalaryDepartment(int departmentNumber) {
         float averageSalary;
         int counter = 0;
         int allSalary = 0;
@@ -118,7 +117,7 @@ public class EmployeeBook {
         return averageSalary;
     }
 
-    public static void salaryIndexation(int departmentNumber, float increasePercent ) {
+    public  void salaryIndexation(int departmentNumber, float increasePercent ) {
         int newSalary;
         increasePercent = (increasePercent / 100 + 1);
         for (Employee employee : employeesList) {
@@ -129,7 +128,7 @@ public class EmployeeBook {
         }
     }
 
-    public static void printDepartmentEmployee(int departmentNumber) {
+    public  void printDepartmentEmployee(int departmentNumber) {
         for (Employee employee : employeesList) {
             if (employee.getDepartment() == departmentNumber) {
                 System.out.println("ID:" + employee.getId() + "ФИО:" + employee.getFullName() + ", зарплата:" + employee.getSalary() );
@@ -137,7 +136,7 @@ public class EmployeeBook {
         }
     }
 
-    public static void salaryLessLVL(int salaryLVL) {
+    public  void salaryLessLVL(int salaryLVL) {
         for (Employee employee : employeesList) {
             if (employee.getSalary() < salaryLVL) {
                 System.out.println("ID:" + employee.getId() + "ФИО:" + employee.getFullName() + ", зарплата:" + employee.getSalary() );
@@ -145,10 +144,41 @@ public class EmployeeBook {
         }
 
     }
-    public static void salaryMoreLVL(int salaryLVL) {
+    public  void salaryMoreLVL(int salaryLVL) {
         for (Employee employee : employeesList) {
             if (employee.getSalary() >= salaryLVL) {
                 System.out.println("ID:" + employee.getId() + "ФИО:" + employee.getFullName() + ", зарплата:" + employee.getSalary() );
+            }
+        }
+
+    }
+
+    public boolean addNewEmployee(Employee newEmployee) {
+        for (int i = 0; i < employeesList.length; i++) {
+            if (employeesList[i].getFullName() == null) {
+                employeesList[i] = newEmployee;
+                employeesList[i].setId(i+1);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void deleteEmployee(int firedID) {
+        for (int i = 0; i < employeesList.length; i++) {
+            if (employeesList[i].getId() == firedID) {
+                employeesList[i].setFullName(null);
+                employeesList[i].setDepartment(0);
+                employeesList[i].setSalary(0);
+
+            }
+        }
+    }
+
+    public void findEmployeeByID(int id) {
+        for (Employee employee : employeesList) {
+            if (employee.getId() == id) {
+                System.out.println(employee);
             }
         }
 

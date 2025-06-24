@@ -24,11 +24,11 @@ public class Employee {
         return department;
     }
     public void setDepartment(int department) {
-        if (department > 5 || department < 1) {
+        /*if (department > 5 || department < 1) {
             throw new IllegalArgumentException ("Недопустимый номер отдела");
-        } else {
+        } else*/
             this.department = department;
-        }
+
     }
     public int getSalary() {
         return salary;
@@ -39,9 +39,9 @@ public class Employee {
     public int getId() {
         return id;
     }
-    /*public void setId(int id) {
-        this.id = id;
-    }*/
+     public void setId(int id) {
+     this.id = id;
+    }
     public String toString() {
         return "ID:" + this.id + " " +"ФИО:" + this.fullName + ", отдел №" + this.department + ", зарплата:" + this.salary;
     }
